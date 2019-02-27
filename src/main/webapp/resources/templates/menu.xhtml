@@ -4,16 +4,19 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui">
 	<h:form>
-		<p:menu>
-			<p:submenu label="Cadastros">
-				<p:menuitem outcome="categoria" value="Categorias" />
-				<p:menuitem outcome="cidade" value="Cidades" />
-				<p:menuitem outcome="cliente" value="Clientes" />
-				<p:menuitem outcome="pais" value="Países" />
-				<p:menuitem outcome="pedido" value="Pedidos" />
-				<p:menuitem outcome="produto" value="Produtos" />	
-				<p:menuitem outcome="uf" value="UFs" />	
-			</p:submenu>
-		</p:menu>
+		  <p:menu toggleable="true">
+        <p:submenu label="Cadastros">
+            <p:menuitem value="Carros" outcome="carros" />
+          	<p:menuitem value="Acessorios" outcome="acessorios" />
+          	<p:menuitem value="Fabricantes" outcome="fabricantes" />
+        </p:submenu>
+        <p:submenu label="Non-Ajax">
+            <p:menuitem value="Delete"  ajax="false"/>
+        </p:submenu>
+        <p:submenu label="Navigations">
+            <p:menuitem value="External" url="http://www.primefaces.org" />
+            <p:menuitem value="Internal" />
+        </p:submenu>
+    </p:menu>
 	</h:form>
 </ui:fragment>

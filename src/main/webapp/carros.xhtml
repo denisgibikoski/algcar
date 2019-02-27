@@ -1,0 +1,82 @@
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:app="http://java.sun.com/jsf/composite/components"
+      template="/resources/templates/base.xhtml">
+<ui:define name="titulo">Carros</ui:define>
+<ui:define name="conteudo">
+
+
+	<app:crud-dialog dialogId="dlgForm" widgetVar="dlgForm" 
+		onSaveAction="#{carroBean.salvar}" onCancelAction="#{carroBean.cancelar}" 
+		onSaveUpdate="@form frmTable" title="#{carroBean.tituloDialog}"
+		onCancelUpdate="@form frmTable" showEffect="fade" hideEffect="slide">
+		<h:inputHidden value="#{carroBean.objeto.codigo}" />
+		<p:panelGrid>
+			<p:row>	
+				<p:column>						
+					<p:outputLabel value="Código" />
+				</p:column>
+				<p:column>
+					<p:outputLabel value="#{carroBean.objeto.codigo}" />
+				</p:column>
+			</p:row>	
+			<p:row>
+				
+			</p:row>
+			
+		</p:panelGrid>
+	</app:crud-dialog>
+
+
+
+
+
+
+	<h:form id="frmTable">
+		<p:dataTable id="dataTable" value="#{carroBean.lista}" 
+			var="carro" emptyMessage="Nenhuma carro cadastrado" 
+			rowKey="#{carro.codigo}" selectionMode="single"
+			selection="#{carroBean.objeto}"  >
+			<f:facet name="header">Carro</f:facet>
+			<p:ajax event="rowSelect" update="@form" 
+				listener="#{carroBean.onRowSelect}" />
+			<p:column headerText="Placa">
+				<p:outputLabel  value="#{carro.placa}" />
+			</p:column>
+			<p:column headerText="Cor">
+				<p:outputLabel  value="#{carro.cor}" />
+			</p:column>
+			<p:column headerText="Modelo">
+				<p:outputLabel  value="#{carro.modelo}" />
+			</p:column>
+			<p:column headerText="Valor da Diaria">
+				<p:outputLabel  value="#{carro.valorDiaria}" />
+			</p:column>
+			
+			
+			<f:facet name="footer">
+				<p:commandButton value="Novo" process="@this"
+					update=":#{p:component('dlgForm')}" resetValues="true"
+					action="#{carroBean.novo}" />
+				<p:commandButton value="Alterar" process="@form" 
+					update=":#{p:component('dlgForm')}" resetValues="true"
+					disabled="#{!carroBean.registroSelecionado}"
+					action="#{carroBean.alterar}" />
+				<p:commandButton value="Remover" process="@form"
+					update="@form" disabled="#{!carroBean.registroSelecionado}"
+					action="#{carroBean.remover}">
+					<p:confirm header="Atenção" 
+						message="Deseja remover essa categoria?"
+						icon="ui-icon-alert" />
+				</p:commandButton>
+			</f:facet>
+		</p:dataTable>
+	</h:form>
+	
+
+
+
+</ui:define> 
+</ui:composition>

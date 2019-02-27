@@ -1,0 +1,80 @@
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:app="http://java.sun.com/jsf/composite/components"
+	template="/resources/templates/base.xhtml">
+	<ui:define name="titulo">acessorios</ui:define>
+	<ui:define name="conteudo">
+
+
+		<app:crud-dialog dialogId="dlgForm" widgetVar="dlgForm"
+			onSaveAction="#{acessorioBean.salvar}"
+			onCancelAction="#{acessorioBean.cancelar}"
+			onSaveUpdate="@form frmTable" title="#{acessorioBean.tituloDialog}"
+			onCancelUpdate="@form frmTable" showEffect="fade" hideEffect="slide">
+			<h:inputHidden value="#{acessorioBean.objeto.codigo}" />
+			<p:panelGrid>
+				<p:row>
+					<p:column>
+						<p:outputLabel value="Codigo" />
+					</p:column>
+					<p:column>
+						<p:outputLabel value="#{acessorioBean.objeto.codigo}" />
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column>
+						<p:outputLabel value="Descricao" />
+					</p:column>
+					<p:column>
+						<p:inputText value="#{acessorioBean.objeto.descricao}" />
+					</p:column>
+				</p:row>
+
+			</p:panelGrid>
+		</app:crud-dialog>
+
+
+
+
+
+
+		<h:form id="frmTable">
+			<p:dataTable id="dataTable" value="#{acessorioBean.lista}"
+				var="acessorio" emptyMessage="Nenhuma acessorio cadastrado"
+				rowKey="#{acessorio.codigo}" selectionMode="single"
+				selection="#{acessorioBean.objeto}">
+				<f:facet name="header">Acessorios</f:facet>
+				<p:ajax event="rowSelect" update="@form"
+					listener="#{acessorioBean.onRowSelect}" />
+				<p:column headerText="Descrição">
+					<p:outputLabel value="#{acessorio.descricao}" />
+				</p:column>
+
+
+
+
+				<f:facet name="footer">
+					<p:commandButton value="Novo" process="@this"
+						update=":#{p:component('dlgForm')}" resetValues="true"
+						action="#{acessorioBean.novo}" />
+					<p:commandButton value="Alterar" process="@form"
+						update=":#{p:component('dlgForm')}" resetValues="true"
+						disabled="#{!acessorioBean.registroSelecionado}"
+						action="#{acessorioBean.alterar}" />
+					<p:commandButton value="Remover" process="@form" update="@form"
+						disabled="#{!acessorioBean.registroSelecionado}"
+						action="#{acessorioBean.remover}">
+						<p:confirm header="AtenÃ§Ã£o"
+							message="Deseja remover essa categoria?" icon="ui-icon-alert" />
+					</p:commandButton>
+				</f:facet>
+			</p:dataTable>
+		</h:form>
+
+
+
+
+	</ui:define>
+</ui:composition>
