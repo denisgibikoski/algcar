@@ -65,7 +65,7 @@ public class Carro {
 		this.valorDiaria = valorDiaria;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "codigo_modelo")
 	public ModeloCarro getModelo() {
 		return modelo;

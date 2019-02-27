@@ -27,6 +27,14 @@ public class ModeloBean extends AbstractBean<ModeloCarro, ModeloRepository> {
 	@Autowired
 	private FabricanteRepository fabricanteRepository;
 
+	public void setFabricantes(List<Fabricante> fabricantes) {
+		this.fabricantes = fabricantes;
+	}
+
+	public void setCategorias(List<Categoria> categorias) {
+		this.categorias = categorias;
+	}
+
 	public ModeloBean() {
 		super(ModeloCarro.class);
 	}
