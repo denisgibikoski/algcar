@@ -1,0 +1,113 @@
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:app="http://java.sun.com/jsf/composite/components"
+	template="/resources/templates/base.xhtml">
+	<ui:define name="titulo">Modelos</ui:define>
+	<ui:define name="conteudo">
+
+	<p:messages>
+		<p:autoUpdate />
+	</p:messages>
+
+		<app:crud-dialog dialogId="dlgForm" widgetVar="dlgForm"
+			onSaveAction="#{modeloBean.salvar}"
+			onCancelAction="#{modeloBean.cancelar}" onSaveUpdate="@form frmTable"
+			title="#{modeloBean.tituloDialog}" onCancelUpdate="@form frmTable"
+			showEffect="fade" hideEffect="slide">
+			<h:inputHidden value="#{modeloBean.objeto.codigo}" />
+			<p:panelGrid>
+				<p:row>
+					<p:column>
+						<p:outputLabel value="Codigo" />
+					</p:column>
+					<p:column>
+						<p:outputLabel value="#{modeloBean.objeto.codigo}" />
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column>
+						<p:outputLabel value="Descricao"  />
+					</p:column>
+					<p:column>
+						<p:inputText value="#{modeloBean.objeto.descricao}" />
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column>
+						<p:outputLabel value="Fabricante" />
+					</p:column>
+					<p:column>
+						<p:selectOneMenu id="fabricante"
+							value="#{modeloBean.objeto.fabricante}"	converter="#{modeloConverter}">
+							<f:selectItem itemLabel="Selecione um Fabricante"	itemValue="" />
+							<f:selectItems value="#{modeloBean.fabricantes}" var="fabricante"
+								itemLabel="#{fabricante.nome}" itemValue="#{fabricante}" />
+						</p:selectOneMenu>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column>
+						<p:outputLabel value="Categoria" />
+					</p:column>
+					<p:column>
+						<p:selectOneMenu id="categoria"
+							value="#{modeloBean.objeto.categoria}"	converter="#{modeloConverter}">
+							<f:selectItem itemLabel="Selecione uma Categoria"	itemValue="" />
+							<f:selectItems value="#{modeloBean.categorias}" var="categoria"
+								itemLabel="#{categoria}" itemValue="#{categoria}" />
+						</p:selectOneMenu>
+					</p:column>
+				</p:row>
+			</p:panelGrid>
+		</app:crud-dialog>
+
+
+
+
+
+
+		<h:form id="frmTable">
+			<p:dataTable id="dataTable" value="#{modeloBean.lista}" var="modelo"
+				emptyMessage="Nenhuma Modelo cadastrado" rowKey="#{modelo.codigo}"
+				selectionMode="single" selection="#{modeloBean.objeto}">
+				<f:facet name="header">modelos</f:facet>
+				<p:ajax event="rowSelect" update="@form"
+					listener="#{modeloBean.onRowSelect}" />
+				<p:column headerText="Descrição">
+					<p:outputLabel value="#{modelo.descricao}" />
+				</p:column>
+				<p:column headerText="Fabricante">
+					<p:outputLabel value="#{modelo.fabricante}" />
+				</p:column>
+				<p:column headerText="Categoria">
+					<p:outputLabel value="#{modelo.categoria}" />
+				</p:column>
+
+
+
+
+				<f:facet name="footer">
+					<p:commandButton value="Novo" process="@this"
+						update=":#{p:component('dlgForm')}" resetValues="true"
+						action="#{modeloBean.novo}" />
+					<p:commandButton value="Alterar" process="@form"
+						update=":#{p:component('dlgForm')}" resetValues="true"
+						disabled="#{!modeloBean.registroSelecionado}"
+						action="#{modeloBean.alterar}" />
+					<p:commandButton value="Remover" process="@form" update="@form"
+						disabled="#{!modeloBean.registroSelecionado}"
+						action="#{modeloBean.remover}">
+						<p:confirm header="Atenção"
+							message="Deseja remover essa Modelo?" icon="ui-icon-alert" />
+					</p:commandButton>
+				</f:facet>
+			</p:dataTable>
+		</h:form>
+
+
+
+
+	</ui:define>
+</ui:composition>

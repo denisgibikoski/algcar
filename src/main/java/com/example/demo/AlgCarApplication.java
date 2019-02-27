@@ -32,6 +32,7 @@ public class AlgCarApplication {
 			}
 		};
 	}
+	
 
 	@Bean
 	public FacesServlet facesServlet() {

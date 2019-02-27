@@ -13,8 +13,9 @@ import com.example.demo.repository.FabricanteRepository;
 @Scope("view")
 public class FabricanteBean extends AbstractBean<Fabricante,FabricanteRepository > {
 
-	public  FabricanteBean() {
+	public FabricanteBean() {
 		super(Fabricante.class);
-	}	
+	}
+	
 
 }

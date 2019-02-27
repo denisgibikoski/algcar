@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class HomeBean {
-	
+
 	private ScheduleModel eventModel = new DefaultScheduleModel();
 
 	public ScheduleModel getEventModel() {
@@ -18,9 +18,3 @@ public class HomeBean {
 	}
 
 }
-
-
-
-
-
-

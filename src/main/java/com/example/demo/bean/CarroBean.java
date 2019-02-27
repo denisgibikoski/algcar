@@ -13,8 +13,9 @@ import com.example.demo.repository.CarroRepository;
 @Scope("view")
 public class CarroBean extends AbstractBean<Carro,CarroRepository > {
 
-	public  CarroBean() {
+	public CarroBean() {
 		super(Carro.class);
-	}	
+	}
+	
 
 }
