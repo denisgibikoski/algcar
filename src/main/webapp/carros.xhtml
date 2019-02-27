@@ -54,7 +54,18 @@
 			<p:column headerText="Valor da Diaria">
 				<p:outputLabel  value="#{carro.valorDiaria}" />
 			</p:column>
-			
+			<p:column headerText="Modelo">
+				<p:outputLabel  value="#{carro.modelo.descricao}" />
+			</p:column>
+			<p:column headerText="Acessorios">
+				
+			</p:column>
+			<p:column headerText="Data de Criação">
+				
+			</p:column>
+			<p:column headerText="Data de Modificação">
+				
+			</p:column>
 			
 			<f:facet name="footer">
 				<p:commandButton value="Novo" process="@this"

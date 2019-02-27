@@ -29,7 +29,9 @@
 		header="#{cc.attrs.title}" modal="true" resizable="false"
 		closable="false" appendTo="@(body)"
 		showEffect="#{cc.attrs.showEffect}"
-		hideEffect="#{cc.attrs.hideEffect}">
+		hideEffect="#{cc.attrs.hideEffect}"
+		
+		>
 		<h:form id="form">
 			<p:focus context="form" />
 			<!-- CONTEÚDO DINÂMICO -->
@@ -48,6 +50,7 @@
 					action="#{cc.attrs.onCancelAction}"
 					update="#{cc.attrs.onCancelUpdate}"
 					process="@this" />
+					
 			</div>
 		</h:form>
 	</p:dialog>

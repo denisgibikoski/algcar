@@ -20,9 +20,12 @@ public class ModeloBean extends AbstractBean<ModeloCarro, ModeloRepository> {
 	private List<Fabricante> fabricantes;
 
 	private List<Categoria> categorias;
+	
+	private Categoria categoria;
+
 
 	@Autowired
-	private FabricanteRepository repository;
+	private FabricanteRepository fabricanteRepository;
 
 	public ModeloBean() {
 		super(ModeloCarro.class);
@@ -35,11 +38,24 @@ public class ModeloBean extends AbstractBean<ModeloCarro, ModeloRepository> {
 	public List<Categoria> getCategorias() {
 		return categorias;
 	}
+	
+	
+
+	public Categoria getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(Categoria categoria) {
+		this.categoria = categoria;
+	}
 
 	@Override
 	protected void carregarLookups() {
-		fabricantes = repository.findAll();
+		fabricantes = fabricanteRepository.findAll();
 		categorias = Arrays.asList(Categoria.values());
 	}
-
+	
+	
+	
+	
 }

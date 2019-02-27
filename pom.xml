@@ -60,6 +60,7 @@
 			<artifactId>primefaces</artifactId>
 			<version>6.2</version>
 		</dependency>
+		
 		<!-- POSTGRESQL -->
 		<dependency>
 			<groupId>org.postgresql</groupId>
