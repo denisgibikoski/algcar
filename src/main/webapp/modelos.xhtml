@@ -25,18 +25,19 @@
 				</p:row>
 				<p:row>
 					<p:column>
-						<p:outputLabel value="Descricao" />
+						<p:outputLabel value="Descricao" for="descricao" />
 					</p:column>
 					<p:column>
-						<p:inputText value="#{modeloBean.objeto.descricao}" />
+						<p:inputText id="descricao" value="#{modeloBean.objeto.descricao}" 
+						required="true" requiredMessage="Preencha a Descricao!"/>
 					</p:column>
 				</p:row>
 								<p:row>
 									<p:column>
-										<p:outputLabel value="Fabricante" />
+										<p:outputLabel value="Fabricante" for="fabricante" />
 									</p:column>
 									<p:column>
-										<p:selectOneMenu id="fabricante"
+										<p:selectOneMenu id="fabricante" required="true" requiredMessage="Selecione um Fabricante !!!"
 											value="#{modeloBean.objeto.fabricante}"	converter="#{fabricanteConverter}">
 											<f:selectItem itemLabel="Selecione um Fabricante"	itemValue="" />
 											<f:selectItems value="#{modeloBean.fabricantes}" var="fabricante"
@@ -46,10 +47,10 @@
 								</p:row>
 								<p:row>
 									<p:column>
-										<p:outputLabel value="Categoria" />
+										<p:outputLabel value="Categoria" for="categoria" />
 									</p:column>
 									<p:column>
-										<p:selectOneMenu id="categoria"
+										<p:selectOneMenu id="categoria" required="true" requiredMessage="Selecione uma Categoria !!!"
 											value="#{modeloBean.objeto.categoria}"  >
 											<f:selectItem itemLabel="Selecione uma Categoria"	itemValue="" />
 											<f:selectItems value="#{modeloBean.categorias}" var="categoria"

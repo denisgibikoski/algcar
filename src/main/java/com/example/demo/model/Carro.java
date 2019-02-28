@@ -1,5 +1,6 @@
 package com.example.demo.model;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
@@ -16,13 +17,16 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
-public class Carro {
+public class Carro implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	private Long codigo;
 	private String placa;
 	private String cor;
 	private BigDecimal valorDiaria;
 	private ModeloCarro modelo;
+
 	private List<Acessorio> acessorios;
 	private List<Aluguel> alugueis;
 
@@ -74,9 +78,10 @@ public class Carro {
 	}
 
 	
-	@ManyToMany(fetch = FetchType.LAZY)
-	@JoinTable(name = "carro_acessorio", joinColumns =
-				@JoinColumn(name = "codigo_carro"), inverseJoinColumns = @JoinColumn(name = "codigo_acessorio"))
+	@ManyToMany(fetch=FetchType.LAZY)
+	@JoinTable(name="carro_acessorio"
+				, joinColumns=@JoinColumn(name="codigo_carro")
+				, inverseJoinColumns=@JoinColumn(name="codigo_acessorio"))
 	public List<Acessorio> getAcessorios() {
 		return acessorios;
 	}

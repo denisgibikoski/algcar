@@ -25,10 +25,11 @@
 				</p:row>
 				<p:row>
 					<p:column>
-						<p:outputLabel value="Nome" />
+						<p:outputLabel value="Nome" for="nome" />
 					</p:column>
 					<p:column>
-						<p:inputText value="#{fabricanteBean.objeto.nome}" />
+						<p:inputText id="nome" value="#{fabricanteBean.objeto.nome}" 
+						required="true" requiredMessage="Preencha o Fabricante!"/>
 					</p:column>
 				</p:row>
 

@@ -25,37 +25,41 @@
 				</p:row>
 				<p:row>
 					<p:column>
-						<p:outputLabel value="Placa" />
+						<p:outputLabel value="Placa" for="placa" />
 					</p:column>
 					<p:column>
-						<p:inputText value="#{carroBean.objeto.placa}" />
-					</p:column>
-				</p:row>
-				<p:row>
-					<p:column>
-						<p:outputLabel value="Cor" />
-					</p:column>
-					<p:column>
-						<p:inputText value="#{carroBean.objeto.cor}" />
+						<p:inputText id="placa" value="#{carroBean.objeto.placa}"
+							required="true" requiredMessage="Preencha a Placa do Veiculo!!!" />
 					</p:column>
 				</p:row>
 				<p:row>
 					<p:column>
-						<p:outputLabel value="Valor Diaria" />
+						<p:outputLabel value="Cor" for="cor" />
 					</p:column>
 					<p:column>
-						<p:inputText value="#{carroBean.objeto.valorDiaria}">
+						<p:inputText id="cor" value="#{carroBean.objeto.cor}"
+							required="true" requiredMessage="Preencha com um Cor !!!" />
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column>
+						<p:outputLabel value="Valor Diaria" for="valor" />
+					</p:column>
+					<p:column>
+						<p:inputNumber id="valor" size="20" maxlength="20" required="true"
+							requiredMessage="É necessario a entra de Valor!!!"
+							value="#{carroBean.objeto.valorDiaria}">
 							<f:convertNumber pattern="#,##0.00"></f:convertNumber>
-
-						</p:inputText>
+						</p:inputNumber>
 					</p:column>
 				</p:row>
 				<p:row>
 					<p:column>
-						<p:outputLabel value="Modelo" />
+						<p:outputLabel value="Modelo" for="modelo" />
 					</p:column>
 					<p:column>
 						<p:selectOneMenu id="modelo" value="#{carroBean.objeto.modelo}"
+							required="true" requiredMessage="Selecione um Modelo !!!"
 							converter="#{modeloConverter}">
 							<f:selectItem itemLabel="Selecione um Modelo" itemValue="" />
 							<f:selectItems value="#{carroBean.modelos}" var="modelo"
@@ -65,12 +69,14 @@
 				</p:row>
 				<p:row>
 					<p:column>
-						<p:outputLabel value="Acessorios" />
+						<p:outputLabel value="Acessorios" for="acessorios" />
 					</p:column>
 					<p:column>
 
-						<p:selectManyCheckbox id="acessorios" value="#{carroBean.acessoriosEscolidos}" 
-							styleClass="sem-bordas" layout="pageDirection" converter="#{acessorioConverter}">
+						<p:selectManyCheckbox id="acessorios"
+							value="#{carroBean.objeto.acessorios}" 
+							styleClass="sem-bordas" layout="pageDirection"
+							converter="#{acessorioConverter}">
 							<f:selectItems value="#{carroBean.acessorios}" var="acessorio"
 								itemLabel="#{acessorio.descricao}" itemValue="#{acessorio}" />
 						</p:selectManyCheckbox>
@@ -107,7 +113,6 @@
 					<p:outputLabel value="#{carro.modelo.descricao}" />
 				</p:column>
 				<p:column headerText="Acessorios">
-
 
 
 				</p:column>

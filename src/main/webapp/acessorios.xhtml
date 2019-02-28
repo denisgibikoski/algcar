@@ -25,10 +25,11 @@
 				</p:row>
 				<p:row>
 					<p:column>
-						<p:outputLabel value="Descricao" />
+						<p:outputLabel value="Descricao" for="descricao" />
 					</p:column>
 					<p:column>
-						<p:inputText value="#{acessorioBean.objeto.descricao}" />
+						<p:inputText id="descricao" value="#{acessorioBean.objeto.descricao}"
+							required="true" requiredMessage="Preencha a Descricao!" />
 					</p:column>
 				</p:row>
 

@@ -1,5 +1,6 @@
 package com.example.demo.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -19,7 +20,9 @@ import javax.persistence.TemporalType;
 @Entity
 @Inheritance(strategy=InheritanceType.JOINED)
 @DiscriminatorColumn(name="TIPO_PESSOA", discriminatorType=DiscriminatorType.INTEGER)
-public abstract class Pessoa {
+public abstract class Pessoa implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	private Long codigo;
 	private String nome;

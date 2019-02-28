@@ -1,5 +1,7 @@
 package com.example.demo.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -11,7 +13,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class ModeloCarro {
+public class ModeloCarro implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	private Long codigo;
 	private String descricao;

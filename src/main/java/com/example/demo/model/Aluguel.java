@@ -1,27 +1,27 @@
 package com.example.demo.model;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Calendar;
 import java.util.Date;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-public class Aluguel {
+public class Aluguel implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	private Long codigo;
 	private BigDecimal valorTotal;
 	private Carro carro;
-	private ApoliceSeguro apoliceSeguro;
 	private Calendar dataPedido;
 	private Date dataEntrega;
 	private Date dataDevolucao;
@@ -42,16 +42,7 @@ public class Aluguel {
 	public void setValorTotal(BigDecimal valorTotal) {
 		this.valorTotal = valorTotal;
 	}
-	
-	@OneToOne(cascade=CascadeType.ALL)
-	@JoinColumn(name="codigo_apolice_seguro")
-	public ApoliceSeguro getApoliceSeguro() {
-		return apoliceSeguro;
-	}
-	public void setApoliceSeguro(ApoliceSeguro apoliceSeguro) {
-		this.apoliceSeguro = apoliceSeguro;
-	}
-	
+		
 	@ManyToOne
 	@JoinColumn(name="codigo_carro")
 	public Carro getCarro() {

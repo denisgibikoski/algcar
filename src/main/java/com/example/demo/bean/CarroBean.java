@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.primefaces.event.SelectEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -24,7 +26,7 @@ public class CarroBean extends AbstractBean<Carro, CarroRepository> {
 	private List<Acessorio> acessorios;
 	private List<ModeloCarro> modelos;
 	
-	private List<Acessorio> acessoriosEscolidos;
+	
 	@Autowired
 	private AcessorioRepository acessorioRepository;
 	@Autowired
@@ -98,10 +100,11 @@ public class CarroBean extends AbstractBean<Carro, CarroRepository> {
 		}
 	}
 	
+	@Transactional
 	public void salvar() {
 			
 		objeto.setDataCriacao(LocalDate.now());
-		objeto.setAcessorios(getAcessoriosEscolidos());	
+		objeto.setAcessorios(getAcessorios());	
 		
 		repository.save(objeto);
 		FacesUtil.addMensagemInfo("Registro gravado com sucesso!");
@@ -111,8 +114,7 @@ public class CarroBean extends AbstractBean<Carro, CarroRepository> {
 		listar();
 	}
 	
-	
-	
+		
 	@Override
 	protected void carregarLookups() {
 		acessorios = acessorioRepository.findAll();
@@ -136,17 +138,5 @@ public class CarroBean extends AbstractBean<Carro, CarroRepository> {
 	public void setModelos(List<ModeloCarro> modelos) {
 		this.modelos = modelos;
 	}
-
-
-	public List<Acessorio> getAcessoriosEscolidos() {
-		return acessoriosEscolidos;
-	}
-
-
-	public void setAcessoriosEscolidos(List<Acessorio> acessoriosEscolidos) {
-		this.acessoriosEscolidos = acessoriosEscolidos;
-	}
-
-	
 
 }
