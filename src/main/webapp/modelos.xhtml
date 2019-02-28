@@ -11,7 +11,7 @@
 			onSaveAction="#{modeloBean.salvar}"
 			onCancelAction="#{modeloBean.cancelar}" 
 			onSaveUpdate="@form frmTable" title="#{modeloBean.tituloDialog}" 
-			onCancelUpdate="@form frmTable"	showEffect="fade" hideEffect="slide"  >
+			onCancelUpdate="@form frmTable"	showEffect="puff" hideEffect="slide"  >
 		
 			<h:inputHidden value="#{modeloBean.objeto.codigo}" />
 			<p:panelGrid>
@@ -33,7 +33,7 @@
 				</p:row>
 								<p:row>
 									<p:column>
-										<p:outputLabel value="Fabrican te" />
+										<p:outputLabel value="Fabricante" />
 									</p:column>
 									<p:column>
 										<p:selectOneMenu id="fabricante"

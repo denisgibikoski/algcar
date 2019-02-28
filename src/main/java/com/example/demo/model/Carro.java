@@ -15,8 +15,6 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
-import org.hibernate.annotations.Cascade;
-
 @Entity
 public class Carro {
 
@@ -75,9 +73,10 @@ public class Carro {
 		this.modelo = modelo;
 	}
 
-	@Cascade(org.hibernate.annotations.CascadeType.REMOVE)
+	
 	@ManyToMany(fetch = FetchType.LAZY)
-	@JoinTable(name = "carro_acessorio", joinColumns = @JoinColumn(name = "codigo_carro"), inverseJoinColumns = @JoinColumn(name = "codigo_acessorio"))
+	@JoinTable(name = "carro_acessorio", joinColumns =
+				@JoinColumn(name = "codigo_carro"), inverseJoinColumns = @JoinColumn(name = "codigo_acessorio"))
 	public List<Acessorio> getAcessorios() {
 		return acessorios;
 	}

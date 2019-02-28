@@ -1,5 +1,7 @@
 package com.example.demo.bean;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.primefaces.event.SelectEvent;
@@ -22,7 +24,7 @@ public class CarroBean extends AbstractBean<Carro, CarroRepository> {
 	private List<Acessorio> acessorios;
 	private List<ModeloCarro> modelos;
 	
-	
+	private List<Acessorio> acessoriosEscolidos;
 	@Autowired
 	private AcessorioRepository acessorioRepository;
 	@Autowired
@@ -76,6 +78,7 @@ public class CarroBean extends AbstractBean<Carro, CarroRepository> {
 	
 	public void novo() throws InstantiationException, IllegalAccessException {
 		objeto = modelClass.newInstance();
+		objeto.setAcessorios(new ArrayList<>());
 		operacao = Operacao.INSERIR;
 		abrirDialog();
 	}
@@ -96,6 +99,9 @@ public class CarroBean extends AbstractBean<Carro, CarroRepository> {
 	}
 	
 	public void salvar() {
+			
+		objeto.setDataCriacao(LocalDate.now());
+		objeto.setAcessorios(getAcessoriosEscolidos());	
 		
 		repository.save(objeto);
 		FacesUtil.addMensagemInfo("Registro gravado com sucesso!");
@@ -129,6 +135,16 @@ public class CarroBean extends AbstractBean<Carro, CarroRepository> {
 
 	public void setModelos(List<ModeloCarro> modelos) {
 		this.modelos = modelos;
+	}
+
+
+	public List<Acessorio> getAcessoriosEscolidos() {
+		return acessoriosEscolidos;
+	}
+
+
+	public void setAcessoriosEscolidos(List<Acessorio> acessoriosEscolidos) {
+		this.acessoriosEscolidos = acessoriosEscolidos;
 	}
 
 	
