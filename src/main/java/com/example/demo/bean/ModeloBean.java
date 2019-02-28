@@ -22,6 +22,8 @@ public class ModeloBean extends AbstractBean<ModeloCarro, ModeloRepository> {
 	private List<Categoria> categorias;
 	
 	private Categoria categoria;
+	
+
 
 
 	@Autowired

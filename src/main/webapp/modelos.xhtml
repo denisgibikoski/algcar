@@ -33,7 +33,7 @@
 				</p:row>
 								<p:row>
 									<p:column>
-										<p:outputLabel value="Fabricante" />
+										<p:outputLabel value="Fabrican te" />
 									</p:column>
 									<p:column>
 										<p:selectOneMenu id="fabricante"
@@ -50,10 +50,10 @@
 									</p:column>
 									<p:column>
 										<p:selectOneMenu id="categoria"
-											value="#{modeloBean.objeto.categoria}" >
+											value="#{modeloBean.objeto.categoria}"  >
 											<f:selectItem itemLabel="Selecione uma Categoria"	itemValue="" />
 											<f:selectItems value="#{modeloBean.categorias}" var="categoria"
-												itemLabel="#{categoria}" itemValue="#{categoria}" />
+												itemLabel="#{categoria.descricao}" itemValue="#{categoria}" />
 										</p:selectOneMenu>
 									</p:column>
 								</p:row>
@@ -72,7 +72,7 @@
 				<p:dataTable id="dataTable" value="#{modeloBean.lista}" var="modelo"
 				emptyMessage="Nenhuma Modelo cadastrado" rowKey="#{modelo.codigo}"
 				selectionMode="single" selection="#{modeloBean.objeto}"   >
-				<f:facet name="header">modelos</f:facet>
+				<f:facet name="header">Modelos</f:facet>
 				<p:ajax event="rowSelect" update="@form"
 					listener="#{modeloBean.onRowSelect}" />
 				<p:column headerText="Descrição">
@@ -82,7 +82,7 @@
 					<p:outputLabel value="#{modelo.fabricante.nome}" />
 				</p:column>
 				<p:column headerText="Categoria">
-					<p:outputLabel value="#{modelo.categoria}" />
+					<p:outputLabel value="#{modelo.categoria.descricao}" />
 				</p:column>
 
 
