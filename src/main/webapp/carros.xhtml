@@ -13,14 +13,14 @@
 			onCancelAction="#{carroBean.cancelar}" onSaveUpdate="@form frmTable"
 			title="#{carroBean.tituloDialog}" onCancelUpdate="@form frmTable"
 			showEffect="fade" hideEffect="slide">
-			<h:inputHidden value="#{carroBean.objeto.codigo}" />
+			<h:inputHidden value="#{carroBean.carro.codigo}" />
 			<p:panelGrid>
 				<p:row>
 					<p:column>
 						<p:outputLabel value="Código" />
 					</p:column>
 					<p:column>
-						<p:outputLabel value="#{carroBean.objeto.codigo}" />
+						<p:outputLabel value="#{carroBean.carro.codigo}" />
 					</p:column>
 				</p:row>
 				<p:row>
@@ -28,7 +28,7 @@
 						<p:outputLabel value="Placa" for="placa" />
 					</p:column>
 					<p:column>
-						<p:inputText id="placa" value="#{carroBean.objeto.placa}"
+						<p:inputText id="placa" value="#{carroBean.carro.placa}"
 							required="true" requiredMessage="Preencha a Placa do Veiculo!!!" />
 					</p:column>
 				</p:row>
@@ -37,7 +37,7 @@
 						<p:outputLabel value="Cor" for="cor" />
 					</p:column>
 					<p:column>
-						<p:inputText id="cor" value="#{carroBean.objeto.cor}"
+						<p:inputText id="cor" value="#{carroBean.carro.cor}"
 							required="true" requiredMessage="Preencha com um Cor !!!" />
 					</p:column>
 				</p:row>
@@ -48,7 +48,7 @@
 					<p:column>
 						<p:inputNumber id="valor" size="20" maxlength="20" required="true"
 							requiredMessage="É necessario a entra de Valor!!!"
-							value="#{carroBean.objeto.valorDiaria}">
+							value="#{carroBean.carro.valorDiaria}">
 							<f:convertNumber pattern="#,##0.00"></f:convertNumber>
 						</p:inputNumber>
 					</p:column>
@@ -58,7 +58,7 @@
 						<p:outputLabel value="Modelo" for="modelo" />
 					</p:column>
 					<p:column>
-						<p:selectOneMenu id="modelo" value="#{carroBean.objeto.modelo}"
+						<p:selectOneMenu id="modelo" value="#{carroBean.carro.modelo}"
 							required="true" requiredMessage="Selecione um Modelo !!!"
 							converter="#{modeloConverter}">
 							<f:selectItem itemLabel="Selecione um Modelo" itemValue="" />
@@ -74,7 +74,7 @@
 					<p:column>
 
 						<p:selectManyCheckbox id="acessorios"
-							value="#{carroBean.objeto.acessorios}" 
+							value="#{carroBean.carro.acessorios}" 
 							styleClass="sem-bordas" layout="pageDirection"
 							converter="#{acessorioConverter}">
 							<f:selectItems value="#{carroBean.acessorios}" var="acessorio"
@@ -94,9 +94,9 @@
 
 
 		<h:form id="frmTable">
-			<p:dataTable id="dataTable" value="#{carroBean.lista}" var="carro"
+			<p:dataTable id="dataTable" value="#{carroBean.carros}" var="carro"
 				emptyMessage="Nenhuma carro cadastrado" rowKey="#{carro.codigo}"
-				selectionMode="single" selection="#{carroBean.objeto}">
+				selectionMode="single" selection="#{carroBean.carro}">
 				<f:facet name="header">Carro</f:facet>
 				<p:ajax event="rowSelect" update="@form"
 					listener="#{carroBean.onRowSelect}" />

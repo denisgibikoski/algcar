@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.transaction.Transactional;
 
 import org.primefaces.event.SelectEvent;
@@ -21,22 +22,32 @@ import com.example.demo.util.FacesUtil;
 
 @Component
 @Scope("view")
-public class CarroBean extends AbstractBean<Carro, CarroRepository> {
+public class CarroBean  {
+	
+	private Carro carro;
 
 	private List<Acessorio> acessorios;
 	private List<ModeloCarro> modelos;
+	private List<Carro> carros;
+	
 	
 	
 	@Autowired
 	private AcessorioRepository acessorioRepository;
 	@Autowired
 	private ModeloRepository modeloRepository;
+	@Autowired
+	private CarroRepository carroRepository;
 
-	public CarroBean() {
-		super(Carro.class);
+	private Operacao operacao;
+	private boolean registroSelecionado;
+
+	
+	@PostConstruct
+	public void inicializar() {
+		listar();
 	}
 	
-
 	public boolean isRegistroSelecionado() {
 		return registroSelecionado;
 	}
@@ -50,8 +61,9 @@ public class CarroBean extends AbstractBean<Carro, CarroRepository> {
 		FacesUtil.abrirDialog("dlgForm");
 	}
 	
+	
 	public void alterar() {
-		if (objeto == null) {
+		if (carro == null) {
 			FacesUtil.addMensagemErro("Selecione um registro");
 		} else {
 			operacao = Operacao.EDITAR;
@@ -60,7 +72,7 @@ public class CarroBean extends AbstractBean<Carro, CarroRepository> {
 	}
 	
 	public void cancelar() {
-		objeto = null;
+		carro = null;
 		operacao = Operacao.LISTAR;
 		fecharDialog();
 	}
@@ -79,8 +91,8 @@ public class CarroBean extends AbstractBean<Carro, CarroRepository> {
 
 	
 	public void novo() throws InstantiationException, IllegalAccessException {
-		objeto = modelClass.newInstance();
-		objeto.setAcessorios(new ArrayList<>());
+		carro = new Carro();
+		carro.setAcessorios(new ArrayList<>());
 		operacao = Operacao.INSERIR;
 		abrirDialog();
 	}
@@ -90,11 +102,11 @@ public class CarroBean extends AbstractBean<Carro, CarroRepository> {
 	}
 	
 	public void remover() {
-		if (objeto == null) {
+		if (carro == null) {
 			FacesUtil.addMensagemErro("Selecione um registro");
 		} else {
-			repository.delete(objeto);
-			objeto = null;
+			carroRepository.delete(carro);
+			carro = null;
 			registroSelecionado = false;
 			listar();
 		}
@@ -103,20 +115,25 @@ public class CarroBean extends AbstractBean<Carro, CarroRepository> {
 	@Transactional
 	public void salvar() {
 			
-		objeto.setDataCriacao(LocalDate.now());
-		objeto.setAcessorios(getAcessorios());	
+		carro.setDataCriacao(LocalDate.now());
+		carro.setAcessorios(getAcessorios());	
 		
-		repository.save(objeto);
+		carroRepository.save(carro);
 		FacesUtil.addMensagemInfo("Registro gravado com sucesso!");
-		objeto = null;
+		carro= null;
 		operacao = Operacao.LISTAR;
 		fecharDialog();
 		listar();
 	}
 	
 		
-	@Override
-	protected void carregarLookups() {
+	protected void listar() {
+		acessorios = acessorioRepository.findAll();
+		modelos = modeloRepository.findAll();
+	}
+	
+	
+	public void carregarLookups() {
 		acessorios = acessorioRepository.findAll();
 		modelos = modeloRepository.findAll();
 		
@@ -139,4 +156,20 @@ public class CarroBean extends AbstractBean<Carro, CarroRepository> {
 		this.modelos = modelos;
 	}
 
+	public Carro getCarro() {
+		return carro;
+	}
+
+	public void setCarro(Carro carro) {
+		this.carro = carro;
+	}
+
+	public List<Carro> getCarros() {
+		return carros;
+	}
+
+	public void setCarros(List<Carro> carros) {
+		this.carros = carros;
+	}
+	
 }
