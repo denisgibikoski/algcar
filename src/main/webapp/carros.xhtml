@@ -101,14 +101,13 @@
 					<p:outputLabel value="#{carro.modelo.descricao}" />
 				</p:column>
 				<p:column headerText="Acessorios">
-						
+						<p:button value="Acessorios" />
 				</p:column>
 				<p:column headerText="Data de Criação">
-
+					<p:outputLabel value="#{carro.dataCriacao}" />
 				</p:column>
-				<p:column headerText="Data de Modificação">
 
-				</p:column>
+				
 
 				<f:facet name="footer">
 					<p:commandButton value="Novo" process="@this"

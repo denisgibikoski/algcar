@@ -12,13 +12,13 @@ import com.example.demo.util.FacesUtil;
 
 public abstract class AbstractBean<M, R extends JpaRepository<M, Long>> {
 	
-	private M objeto;
+	protected M objeto;
 	private List<M> lista;
-	private final Class<M> modelClass;
+	protected final Class<M> modelClass;
 	@Autowired
 	protected R repository;
-	private Operacao operacao;
-	private boolean registroSelecionado;
+	protected Operacao operacao;
+	protected boolean registroSelecionado;
 	
 	AbstractBean(Class<M> modelClass) {
 		this.modelClass = modelClass;
@@ -87,7 +87,7 @@ public abstract class AbstractBean<M, R extends JpaRepository<M, Long>> {
 				"Alterar Registro" : "Novo Registro";
 	}
 	
-	private void listar() {
+	protected void listar() {
 		lista = repository.findAll();
 	}
 	

@@ -29,7 +29,7 @@ public class Carro {
 	private List<Aluguel> alugueis;
 
 	private LocalDate dataCriacao;
-	private LocalDate dataModificacao;
+
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -103,17 +103,6 @@ public class Carro {
 	public void setDataCriacao(LocalDate dataCriacao) {
 		this.dataCriacao = dataCriacao;
 	}
-
-	
-	public LocalDate getDataModificacao() {
-		return dataModificacao;
-	}
-
-	public void setDataModificacao(LocalDate dataModificacao) {
-		this.dataModificacao = dataModificacao;
-	}
-
-
 
 	@Override
 	public int hashCode() {
