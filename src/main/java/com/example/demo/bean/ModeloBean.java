@@ -20,13 +20,8 @@ public class ModeloBean extends AbstractBean<ModeloCarro, ModeloRepository> {
 	private List<Fabricante> fabricantes;
 
 	private List<Categoria> categorias;
-	
 
-	
 	private Categoria categoria;
-	
-
-
 
 	@Autowired
 	private FabricanteRepository fabricanteRepository;
@@ -50,8 +45,6 @@ public class ModeloBean extends AbstractBean<ModeloCarro, ModeloRepository> {
 	public List<Categoria> getCategorias() {
 		return categorias;
 	}
-		
-	
 
 	public Categoria getCategoria() {
 		return categoria;
@@ -65,11 +58,7 @@ public class ModeloBean extends AbstractBean<ModeloCarro, ModeloRepository> {
 	protected void carregarLookups() {
 		fabricantes = fabricanteRepository.findAll();
 		categorias = Arrays.asList(Categoria.values());
-	
-		
+
 	}
-	
-	
-	
-	
+
 }
