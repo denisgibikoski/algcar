@@ -25,7 +25,7 @@ import com.example.demo.util.FacesUtil;
 public class CarroBean  {
 	
 	private Carro carro;
-
+	private List<Acessorio> acessorioSelecionados; 
 	private List<Acessorio> acessorios;
 	private List<ModeloCarro> modelos;
 	private List<Carro> carros;
@@ -116,8 +116,7 @@ public class CarroBean  {
 	public void salvar() {
 			
 		carro.setDataCriacao(LocalDate.now());
-		carro.setAcessorios(getAcessorios());	
-		
+			
 		carroRepository.save(carro);
 		FacesUtil.addMensagemInfo("Registro gravado com sucesso!");
 		carro= null;
@@ -128,8 +127,8 @@ public class CarroBean  {
 	
 		
 	protected void listar() {
-		acessorios = acessorioRepository.findAll();
 		modelos = modeloRepository.findAll();
+		acessorioSelecionados = acessorioRepository.findAll();
 	}
 	
 	
@@ -171,5 +170,14 @@ public class CarroBean  {
 	public void setCarros(List<Carro> carros) {
 		this.carros = carros;
 	}
+
+	public List<Acessorio> getAcessorioSelecionados() {
+		return acessorioSelecionados;
+	}
+
+	public void setAcessorioSelecionados(List<Acessorio> acessorioSelecionados) {
+		this.acessorioSelecionados = acessorioSelecionados;
+	}
+	
 	
 }

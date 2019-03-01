@@ -8,6 +8,12 @@
 	<ui:define name="conteudo">
 
 
+		<f:metadata>
+			<f:viewAction action="#{carroBean.inicializar}"  type="preRenderView" />
+		</f:metadata>
+
+
+
 		<app:crud-dialog dialogId="dlgForm" widgetVar="dlgForm"
 			onSaveAction="#{carroBean.salvar}"
 			onCancelAction="#{carroBean.cancelar}" onSaveUpdate="@form frmTable"
@@ -74,10 +80,9 @@
 					<p:column>
 
 						<p:selectManyCheckbox id="acessorios"
-							value="#{carroBean.carro.acessorios}" 
-							styleClass="sem-bordas" layout="pageDirection"
-							converter="#{acessorioConverter}">
-							<f:selectItems value="#{carroBean.acessorios}" var="acessorio"
+							value="#{carroBean.carro.acessorios}" styleClass="sem-bordas"
+							layout="pageDirection" converter="#{acessorioConverter}">
+							<f:selectItems value="#{carroBean.acessorioSelecionados}" var="acessorio"
 								itemLabel="#{acessorio.descricao}" itemValue="#{acessorio}" />
 						</p:selectManyCheckbox>
 

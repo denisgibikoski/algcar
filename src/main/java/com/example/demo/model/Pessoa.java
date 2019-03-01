@@ -17,6 +17,8 @@ import javax.persistence.InheritanceType;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.hibernate.validator.constraints.br.CPF;
+
 @Entity
 @Inheritance(strategy=InheritanceType.JOINED)
 @DiscriminatorColumn(name="TIPO_PESSOA", discriminatorType=DiscriminatorType.INTEGER)
@@ -55,6 +57,7 @@ public abstract class Pessoa implements Serializable {
 		this.dataNascimento = dataNascimento;
 	}
 	
+	@CPF
 	public String getCpf() {
 		return cpf;
 	}
